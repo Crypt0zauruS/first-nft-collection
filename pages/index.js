@@ -1,10 +1,10 @@
 import { providers, Contract, utils } from "ethers";
 import Head from "next/head";
 import React, { useEffect, useState, useRef } from "react";
-import { getTypeParameterOwner } from "typescript";
 import Web3Modal from "web3modal";
 import { abi, NFT_CONTRACT_ADDRESS } from "../constants";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 function Home() {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -269,7 +269,7 @@ function Home() {
     if (!presaleStarted) {
       return (
         <div>
-          <div className={styles.description}>Presale hasn't started</div>
+          <div className={styles.description}>Presale has not started</div>
         </div>
       );
     }
@@ -316,7 +316,11 @@ function Home() {
           {renderButton()}
         </div>
         <div>
-          <img className={styles.image} src="./cryptodevs/0.svg" />
+          <img
+            className={styles.image}
+            src="./cryptodevs/0.svg"
+            alt="Crypto Devs NFT"
+          />
         </div>
       </div>
 
