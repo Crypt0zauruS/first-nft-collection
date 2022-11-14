@@ -26,7 +26,7 @@ function Home() {
   const presaleMint = async () => {
     try {
       // Get the signer from the Web3 Modal, mandatory for 'write' transactions
-      const signer = await getProviderOrSiger(true);
+      const signer = await getProviderOrSigner(true);
       // instantiate contract with the signer
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, signer);
       // call the presaleMint function on the contract
@@ -48,7 +48,7 @@ function Home() {
   const publicMint = async () => {
     try {
       // Get the signer from the Web3 Modal, mandatory for 'write' transactions
-      const signer = await getProviderOrSiger(true);
+      const signer = await getProviderOrSigner(true);
       // instantiate contract with the signer
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, signer);
       // call the presaleMint function on the contract
@@ -72,7 +72,7 @@ function Home() {
     try {
       // Get the provider from web3modal, which is metamask
       // no need to be true, because we are not writing to the blockchain
-      await getProviderOrSiger();
+      await getProviderOrSigner();
       setWalletConnected(true);
     } catch (error) {
       console.log(error);
@@ -83,7 +83,7 @@ function Home() {
   const startPresale = async () => {
     try {
       // Get the signer from the Web3 Modal, mandatory for 'write' transactions
-      const signer = await getProviderOrSiger(true);
+      const signer = await getProviderOrSigner(true);
       // instantiate contract with the signer
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, signer);
       // call the startPresale function on the contract
@@ -103,7 +103,7 @@ function Home() {
     try {
       // Get the provider from the Web3 Modal
       // no need the signer to be true, we don't write here
-      const provider = await getProviderOrSiger();
+      const provider = await getProviderOrSigner();
       // instantiate contract with the provider
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
       // call the presaleStarted function on the contract
@@ -123,7 +123,7 @@ function Home() {
     try {
       // Get the provider from the Web3 Modal
       // no need the signer to be true, we don't write here
-      const provider = await getProviderOrSiger();
+      const provider = await getProviderOrSigner();
       // instantiate contract with the provider
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
       // call the presaleEnded function on the contract
@@ -150,13 +150,13 @@ function Home() {
     try {
       // Get the provider from the Web3 Modal
       // no need the signer to be true, we don't write here
-      const provider = await getProviderOrSiger();
+      const provider = await getProviderOrSigner();
       // instantiate contract with the provider
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
       // call the owner function on the contract
       const _owner = await nftContract.owner();
       // Get the signer from the Web3 Modal to extract the address of the currently connected MetaMask account
-      const signer = await getProviderOrSiger(true);
+      const signer = await getProviderOrSigner(true);
       // check if the owner of the contract is the currently connected MetaMask account
       const address = await signer.getAddress();
       if (address.toLowerCase() === _owner.toLowerCase()) {
@@ -172,7 +172,7 @@ function Home() {
     try {
       // Get the provider from the Web3 Modal
       // no need the signer to be true, we don't write here
-      const provider = await getProviderOrSiger();
+      const provider = await getProviderOrSigner();
       // instantiate contract with the provider
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
       // call the tokenIds from the contract
@@ -192,7 +192,7 @@ function Home() {
    * @param {*} needSigner - True if you need the signer, default false otherwise
    */
 
-  const getProviderOrSiger = async (needSigner = false) => {
+  const getProviderOrSigner = async (needSigner = false) => {
     // Connect to Metamask
     // Since we store `web3Modal` as a REF, we need to access the `current` value to get access to
     //the underlying object
